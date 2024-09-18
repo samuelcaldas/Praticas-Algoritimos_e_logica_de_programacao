@@ -24,19 +24,20 @@ programa
         // Loop principal do jogo
         enquanto (jogoEmExecucao)
         {
-            exibirIntroducao()
-            escolherCaminho()
+            nivelUm()
 
             se (pontuacao > 0)
             {
                 avancarParaTemplo()
             }
-            se (pontuacao < 0)
-            {
-                escreva("\nSua pontuação ficou negativa. Você perdeu o jogo.\n")
-                jogoEmExecucao = falso
-            }
         }
+    }
+
+    // Nivel 1 do jogo
+    funcao nivelUm()
+    {
+        exibirIntroducao()
+        escolherCaminho()
     }
 
     // Função para exibir a introdução do jogo
@@ -52,7 +53,7 @@ programa
     // Função para o jogador escolher um caminho
     funcao escolherCaminho()
     {
-        inteiro opcaoCaminho
+        cadeia opcaoCaminho
 
         escreva("\nEscolha um caminho (1, 2, ou 3): ")
         leia(opcaoCaminho)
@@ -60,7 +61,6 @@ programa
         // Evento aleatório de desmaio
         se (verificarEventoAleatorio())
         {
-            limpa()
             escreva("\nVocê sentiu uma tontura repentina e desmaiou...\n")
             escreva("Você acorda novamente no início da floresta.\n")
             // Pontuação permanece inalterada
@@ -69,26 +69,23 @@ programa
 
         escolha (opcaoCaminho)
         {
-            caso 1:
+            caso '1':
                 caminhoDasSombras()
                 pare
-            caso 2:
-                limpa()
+            caso '2':
                 caminhoDaLuz()
                 pare
-            caso 3:
-                limpa()
+            caso '3':
                 caminhoDasCriaturas()
                 pare
             caso contrario:
-                limpa()
-                escreva("Escolha inválida. Por favor, selecione um caminho válido.\n")
-                escolherCaminho()
+                nivelUm()
                 pare
         }
     }
 
     // Função para gerar um evento aleatório
+    // Deve existir uma maneira melhor de fazer isso, mas estou cansado no momento.
     funcao logico verificarEventoAleatorio()
     {
         inteiro chance = u.sorteia(1, 10) // Gera um número entre 1 e 10
@@ -117,7 +114,6 @@ programa
     // Função para o Caminho das Sombras
     funcao caminhoDasSombras()
     {
-        limpa()
         escreva("\nVocê escolheu o Caminho das Sombras.\n")
         escreva("Este caminho é cercado por árvores antigas e sombrias, com raios de lua penetrando entre os galhos.\n")
         escreva("Uma criatura mágica guardiã do caminho aparece e diz:\n")
@@ -130,7 +126,6 @@ programa
 
         se (verificarEventoAleatorio())
         {
-            limpa()
             escreva("\nDe repente, você é capturado e...\n")
             escreva("Acorda novamente no início da floresta.\n")
             retorne
@@ -156,14 +151,13 @@ programa
             {
                 retorne
             }
-            escolherCaminho()
+            nivelUm()
         }
     }
 
     // Função para o Caminho da Luz
     funcao caminhoDaLuz()
     {
-        limpa()
         escreva("\nVocê escolheu o Caminho da Luz.\n")
         escreva("Este caminho é iluminado por raios de sol que filtram entre as copas das árvores.\n")
         escreva("Você encontra uma ponte quebrada sobre um rio turbulento.\n")
@@ -175,7 +169,6 @@ programa
 
         se (verificarEventoAleatorio())
         {
-            limpa()
             escreva("\nDe repente, você sente uma fraqueza e desmaia...\n")
             escreva("Você acorda novamente no início da floresta.\n")
             retorne
@@ -201,7 +194,7 @@ programa
             {
                 retorne
             }
-            escolherCaminho()
+            nivelUm()
         }
         senao
         {
@@ -214,7 +207,6 @@ programa
     // Função para o Caminho das Criaturas
     funcao caminhoDasCriaturas()
     {
-        limpa()
         escreva("\nVocê escolheu o Caminho das Criaturas.\n")
         escreva("Este caminho é repleto de sons estranhos e pegadas misteriosas no chão.\n")
         escreva("Você se depara com uma criatura mágica adormecida bloqueando o caminho.\n")
@@ -226,7 +218,6 @@ programa
 
         se (verificarEventoAleatorio())
         {
-            limpa()
             escreva("\nUm gás misterioso envolve você, e você desmaia...\n")
             escreva("Você acorda novamente no início da floresta.\n")
             retorne
@@ -252,7 +243,7 @@ programa
             {
                 retorne
             }
-            escolherCaminho()
+            nivelUm()
         }
         senao
         {
@@ -265,7 +256,6 @@ programa
     // Função para avançar para o Templo dos Ecos
     funcao avancarParaTemplo()
     {
-        limpa()
         escreva("\nApós superar os desafios iniciais, você chega ao Templo dos Ecos.\n\n")
         desafioSalaoReflexoes()
     }
@@ -318,7 +308,7 @@ programa
     {
         escreva("\nVocê encontra o Guardião do Templo.\n")
         escreva("Ele diz:\n")
-        escreva("\"Prove seu valor escolhendo sabiamente. À sua frente estão dois cálices: 'A' e 'B'. Um concede o tesouro que você busca, o outro o amaldiçoa a vagar pela floresta para sempre.\"\n")
+        escreva("\"Prove seu valor escolhendo sabiamente. À sua frente estão dois cálices: Um de madeira e um de ouro. Um concede o tesouro que você busca, o outro o amaldiçoa a vagar pela floresta para sempre.\"\n")
 
         cadeia escolhaCalice
         escreva("Escolha um cálice ('Madeira' ou 'Ouro'): ") // Entendedores entenderão
@@ -334,14 +324,14 @@ programa
 
         escolha (escolhaCalice)
         {
-            caso "A":
+            caso "madeira":
                 escreva("\nVocê escolheu o cálice correto! O tesouro é seu.\n")
                 pontuacao = pontuacao + PONTOS_GUARDIAO_TESOURO
                 escreva("Você ganhou ", PONTOS_GUARDIAO_TESOURO, " pontos. Pontuação final: ", pontuacao, "\n")
                 escreva("Parabéns! Você venceu a aventura!\n")
                 jogoEmExecucao = falso
                 pare
-            caso "B":
+            caso "ouro":
                 escreva("\nUma maldição é desencadeada! Você é enviado de volta ao início do templo.\n")
                 pontuacao = pontuacao - PENALIDADE_GUARDIAO_MALDICAO
                 escreva("Você perdeu ", PENALIDADE_GUARDIAO_MALDICAO, " pontos. Pontuação atual: ", pontuacao, "\n")
