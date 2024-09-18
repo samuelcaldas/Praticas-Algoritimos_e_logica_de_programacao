@@ -43,7 +43,7 @@ programa
     // Função para exibir a introdução do jogo
     funcao exibirIntroducao()
     {
-        escreva("Você é um explorador corajoso que se aventura em uma misteriosa Floresta Sussurrante em busca de tesouros lendários e segredos perdidos.\n")
+        escreva("\nVocê é um explorador corajoso que se aventura em uma misteriosa Floresta Sussurrante em busca de tesouros lendários e segredos perdidos.\n")
         escreva("Ao adentrar na floresta, você se depara com três caminhos diferentes:\n")
         escreva("1. O Caminho das Sombras\n")
         escreva("2. O Caminho da Luz\n")
