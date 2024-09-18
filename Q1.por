@@ -3,6 +3,9 @@ programa
     // Inclui a biblioteca Util para uso de funções de aleatoriedade
     inclua biblioteca Util --> u
 
+    // Inclui a biblioteca Texto para manipular strings
+    inclua biblioteca Texto --> tx
+
     // Constantes para os valores de pontos
     const inteiro PONTOS_CAMINHO_SOMBRAS = 100
     const inteiro PONTOS_CAMINHO_LUZ = 50
@@ -123,6 +126,7 @@ programa
         cadeia respostaEnigma
         escreva("Sua resposta: ")
         leia(respostaEnigma)
+        respostaEnigma = tx.caixa_baixa(respostaEnigma)
 
         se (verificarEventoAleatorio())
         {
@@ -167,6 +171,7 @@ programa
 
         cadeia decisaoPonte
         leia(decisaoPonte)
+        decisaoPonte = tx.caixa_baixa(decisaoPonte)
 
         se (verificarEventoAleatorio())
         {
@@ -217,6 +222,7 @@ programa
 
         cadeia decisaoCriatura
         leia(decisaoCriatura)
+        decisaoCriatura = tx.caixa_baixa(decisaoCriatura)
 
         se (verificarEventoAleatorio())
         {
@@ -274,6 +280,7 @@ programa
         cadeia respostaSalao
         escreva("Sua resposta: ")
         leia(respostaSalao)
+        respostaSalao = tx.caixa_baixa(respostaSalao)
 
         se (verificarEventoAleatorio())
         {
@@ -316,6 +323,8 @@ programa
         cadeia escolhaCalice
         escreva("Escolha um cálice ('A' ou 'B'): ")
         leia(escolhaCalice)
+        escolhaCalice = tx.caixa_baixa(escolhaCalice)
+
 
         se (verificarEventoAleatorio())
         {
