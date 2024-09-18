@@ -321,7 +321,7 @@ programa
         escreva("\"Prove seu valor escolhendo sabiamente. À sua frente estão dois cálices: 'A' e 'B'. Um concede o tesouro que você busca, o outro o amaldiçoa a vagar pela floresta para sempre.\"\n")
 
         cadeia escolhaCalice
-        escreva("Escolha um cálice ('A' ou 'B'): ")
+        escreva("Escolha um cálice ('Madeira' ou 'Ouro'): ") // Entendedores entenderão
         leia(escolhaCalice)
         escolhaCalice = tx.caixa_baixa(escolhaCalice)
 
@@ -359,6 +359,7 @@ programa
     }
 
     // Função para gerar um número aleatório dentro de um intervalo usando a biblioteca Util
+    // Criei inicialmente essa funçao pois ainda não sabia como geraria numeros aleatórios em portugol. Basicamente um placeholder.
     funcao inteiro sorteia(inteiro minimo, inteiro maximo)
     {
         inteiro numeroAleatorio = u.sorteia(minimo, maximo)
