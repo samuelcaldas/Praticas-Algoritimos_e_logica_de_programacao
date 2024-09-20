@@ -413,21 +413,4 @@ programa
                 pare
         }
     }
-
-    /**
-     * @brief Gera um número aleatório dentro de um intervalo.
-     *
-     * @param minimo Valor mínimo do intervalo.
-     * @param maximo Valor máximo do intervalo.
-     * @return inteiro Número aleatório gerado.
-     *
-     * @details Utiliza a função de sorteio da biblioteca Util.
-     *
-     * Criei inicialmente essa funçao pois ainda não sabia como geraria numeros aleatórios em portugol. Basicamente um placeholder.
-     */
-    funcao inteiro sorteia(inteiro minimo, inteiro maximo)
-    {
-        inteiro numeroAleatorio = u.sorteia(minimo, maximo)
-        retorne numeroAleatorio
-    }
 }
