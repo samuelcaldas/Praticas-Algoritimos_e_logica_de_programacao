@@ -1,24 +1,63 @@
+/**
+ * @mainpage Aventura na Floresta Sussurrante
+ *
+ * @brief Este programa é um jogo de aventura onde o jogador explora a Floresta Sussurrante em busca de tesouros e segredos.
+ *
+ * O jogador pode escolher entre diferentes caminhos, enfrentar desafios e acumular pontos até alcançar o Templo dos Ecos.
+ */
+
 programa
 {
-    // Inclui a biblioteca Util para uso de funções de aleatoriedade
+    /** @brief Biblioteca Util para funções de aleatoriedade. */
     inclua biblioteca Util --> u
 
-    // Inclui a biblioteca Texto para manipular strings
+    /** @brief Biblioteca Texto para manipulação de strings. */
     inclua biblioteca Texto --> tx
 
+    // -------------------------------------------------------------------------
     // Constantes para os valores de pontos
+    // -------------------------------------------------------------------------
+
+    /** @brief Pontos ganhos ao escolher o Caminho das Sombras */
     const inteiro PONTOS_CAMINHO_SOMBRAS = 100
+
+    /** @brief Pontos ganhos ao escolher o Caminho da Luz */
     const inteiro PONTOS_CAMINHO_LUZ = 50
+
+    /** @brief Pontos ganhos ao escolher o Caminho das Criaturas */
     const inteiro PONTOS_CAMINHO_CRIATURAS = 75
+
+    /** @brief Pontos ganhos ao completar o Salão das Reflexões */
     const inteiro PONTOS_SALAO_REFLEXO = 150
+
+    /** @brief Pontos ganhos ao derrotar o Guardião do Tesouro */
     const inteiro PONTOS_GUARDIAO_TESOURO = 200
+
+    /** @brief Penalidade de pontos ao falhar no Salão das Reflexões */
     const inteiro PENALIDADE_SALAO_REFLEXO = 50
+
+    /** @brief Penalidade de pontos ao ser amaldiçoado pelo Guardião */
     const inteiro PENALIDADE_GUARDIAO_MALDICAO = 100
 
+    // -------------------------------------------------------------------------
     // Variáveis globais para a pontuação e controle do jogo
+    // -------------------------------------------------------------------------
+
+    /** @brief Pontuação atual do jogador */
     inteiro pontuacao = 0
+
+    /** @brief Indicador se o jogo está em execução */
     logico jogoEmExecucao = verdadeiro
 
+    // -------------------------------------------------------------------------
+    // Funções do Jogo
+    // -------------------------------------------------------------------------
+
+    /**
+     * @brief Função principal que inicia o jogo.
+     *
+     * Executa o loop principal do jogo, iniciando o primeiro nível e avançando para o templo se a pontuação for positiva.
+     */
     funcao inicio()
     {
         // Loop principal do jogo
@@ -33,14 +72,22 @@ programa
         }
     }
 
-    // Nivel 1 do jogo
+    /**
+     * @brief Executa o primeiro nível do jogo.
+     *
+     * Exibe a introdução e permite que o jogador escolha um caminho.
+     */
     funcao nivelUm()
     {
         exibirIntroducao()
         escolherCaminho()
     }
 
-    // Função para exibir a introdução do jogo
+    /**
+     * @brief Exibe a introdução do jogo.
+     *
+     * Mostra ao jogador a história inicial e as opções de caminhos disponíveis.
+     */
     funcao exibirIntroducao()
     {
         escreva("\nVocê é um explorador corajoso que se aventura em uma misteriosa Floresta Sussurrante em busca de tesouros lendários e segredos perdidos.\n")
@@ -50,7 +97,11 @@ programa
         escreva("3. O Caminho das Criaturas\n")
     }
 
-    // Função para o jogador escolher um caminho
+    /**
+     * @brief Permite que o jogador escolha um caminho.
+     *
+     * Recebe a escolha do jogador e direciona para a função correspondente.
+     */
     funcao escolherCaminho()
     {
         cadeia opcaoCaminho
@@ -84,10 +135,16 @@ programa
         }
     }
 
-    // Função para gerar um evento aleatório
-    // Deve existir uma maneira melhor de fazer isso, mas estou cansado no momento.
+    /**
+     * @brief Gera um evento aleatório.
+     *
+     * @return @c verdadeiro se o evento ocorrer, @c falso caso contrário.
+     *
+     * @details Possui 10% de chance de retornar verdadeiro.
+     */
     funcao logico verificarEventoAleatorio()
     {
+        // Deve existir uma maneira melhor de fazer isso, mas estou cansado no momento.
         inteiro chance = u.sorteia(1, 10) // Gera um número entre 1 e 10
         se (chance == 1) // 10% de chance de ocorrer o evento
         {
@@ -99,7 +156,13 @@ programa
         }
     }
 
-    // Função para verificar a pontuação e finalizar o jogo se necessário
+    /**
+     * @brief Verifica a pontuação do jogador.
+     *
+     * @return @c verdadeiro se a pontuação for negativa e o jogo deve terminar, @c falso caso contrário.
+     *
+     * @details Se a pontuação ficar negativa, o jogo é finalizado.
+     */
     funcao logico verificarPontuacao()
     {
         se (pontuacao < 0)
@@ -111,7 +174,7 @@ programa
         retorne falso // O jogo continua
     }
 
-    // Função para o Caminho das Sombras
+    /** @brief Executa o Caminho das Sombras. */
     funcao caminhoDasSombras()
     {
         escreva("\nVocê escolheu o Caminho das Sombras.\n")
@@ -155,7 +218,7 @@ programa
         }
     }
 
-    // Função para o Caminho da Luz
+    /** @brief Executa o Caminho da Luz. */
     funcao caminhoDaLuz()
     {
         escreva("\nVocê escolheu o Caminho da Luz.\n")
@@ -204,7 +267,7 @@ programa
         }
     }
 
-    // Função para o Caminho das Criaturas
+    /** @brief Executa o Caminho das Criaturas. */
     funcao caminhoDasCriaturas()
     {
         escreva("\nVocê escolheu o Caminho das Criaturas.\n")
@@ -253,14 +316,14 @@ programa
         }
     }
 
-    // Função para avançar para o Templo dos Ecos
+    /** @brief Avança para o Templo dos Ecos após superar os desafios iniciais e inicia o desafio no Salão das Reflexões dentro do templo. */
     funcao avancarParaTemplo()
     {
         escreva("\nApós superar os desafios iniciais, você chega ao Templo dos Ecos.\n\n")
         desafioSalaoReflexoes()
     }
 
-    // Função para o Desafio do Salão das Reflexões
+    /** @brief Executao Desafio do Salão das Reflexões. */
     funcao desafioSalaoReflexoes()
     {
         escreva("\nDentro do templo, você entra no Salão das Reflexões.\n")
@@ -303,7 +366,11 @@ programa
         }
     }
 
-    // Função para o Desafio do Guardião do Templo
+    /**
+     * @brief Desafia o jogador com o Guardião do Templo.
+     *
+     * O jogador deve escolher entre dois cálices, um correto e outro que resulta em penalidades.
+     */
     funcao desafioGuardiaoTemplo()
     {
         escreva("\nVocê encontra o Guardião do Templo.\n")
@@ -314,7 +381,6 @@ programa
         escreva("Escolha um cálice ('Madeira' ou 'Ouro'): ") // Entendedores entenderão
         leia(escolhaCalice)
         escolhaCalice = tx.caixa_baixa(escolhaCalice)
-
 
         se (verificarEventoAleatorio())
         {
@@ -348,8 +414,17 @@ programa
         }
     }
 
-    // Função para gerar um número aleatório dentro de um intervalo usando a biblioteca Util
-    // Criei inicialmente essa funçao pois ainda não sabia como geraria numeros aleatórios em portugol. Basicamente um placeholder.
+    /**
+     * @brief Gera um número aleatório dentro de um intervalo.
+     *
+     * @param minimo Valor mínimo do intervalo.
+     * @param maximo Valor máximo do intervalo.
+     * @return inteiro Número aleatório gerado.
+     *
+     * @details Utiliza a função de sorteio da biblioteca Util.
+     *
+     * Criei inicialmente essa funçao pois ainda não sabia como geraria numeros aleatórios em portugol. Basicamente um placeholder.
+     */
     funcao inteiro sorteia(inteiro minimo, inteiro maximo)
     {
         inteiro numeroAleatorio = u.sorteia(minimo, maximo)
