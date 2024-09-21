@@ -52,13 +52,11 @@ funcao inicio()
     
     se (nao debug)
     {
-
         se(exibirTelaInicial())
         {
             retorne
         }
         exibirTextoInicial()
-
     }
     
     faca
@@ -287,14 +285,6 @@ funcao moverCima()
         {
             posX = posX - 1
         }
-        senao
-        {
-            escreva("Parede à frente! Movimento bloqueado.\n")
-        }
-    }
-    senao
-    {
-        escreva("Você não pode mover para cima!\n")
     }
 }
 
@@ -307,14 +297,6 @@ funcao moverBaixo()
         {
             posX = posX + 1
         }
-        senao
-        {
-            escreva("Parede à frente! Movimento bloqueado.\n")
-        }
-    }
-    senao
-    {
-        escreva("Você não pode mover para baixo!\n")
     }
 }
 
@@ -327,14 +309,6 @@ funcao moverEsquerda()
         {
             posY = posY - 1
         }
-        senao
-        {
-            escreva("Parede à frente! Movimento bloqueado.\n")
-        }
-    }
-    senao
-    {
-        escreva("Você não pode mover para a esquerda!\n")
     }
 }
 
@@ -347,14 +321,6 @@ funcao moverDireita()
         {
             posY = posY + 1
         }
-        senao
-        {
-            escreva("Parede à frente! Movimento bloqueado.\n")
-        }
-    }
-    senao
-    {
-        escreva("Você não pode mover para a direita!\n")
     }
 }
 
