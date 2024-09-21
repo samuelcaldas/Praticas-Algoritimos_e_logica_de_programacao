@@ -327,9 +327,103 @@ funcao moverDireita()
 // Função para Verificar se Existe um Caminho Livre até o Tesouro (BFS)
 funcao logico existeCaminho(inteiro inicioX, inteiro inicioY, inteiro destinoX, inteiro destinoY)
 {
-    // Implementação do Algoritmo de Busca em Largura (BFS)
-    // Para simplificação, assumiremos que sempre há um caminho
-    retorne verdadeiro
+    inteiro linhas = u.numero_linhas(labirinto)
+    inteiro colunas = u.numero_colunas(labirinto)
+
+    // Verifica se os pontos estão dentro dos limites do labirinto
+    se (inicioX < 0 ou inicioX >= linhas ou inicioY < 0 ou inicioY >= colunas)
+    {
+        retorne falso
+    }
+
+    se (destinoX < 0 ou destinoX >= linhas ou destinoY < 0 ou destinoY >= colunas)
+    {
+        retorne falso
+    }
+
+    // Verifica se os pontos inicial e destino não são paredes ou armadilhas
+    se (labirinto[inicioX][inicioY] == PAREDE ou labirinto[inicioX][inicioY] == ARMADILHA)
+    {
+        retorne falso
+    }
+
+    se (labirinto[destinoX][destinoY] == PAREDE ou labirinto[destinoX][destinoY] == ARMADILHA)
+    {
+        retorne falso
+    }
+
+    // Inicializa a matriz de visitados
+    logico visitado[linhas][colunas]
+
+    para (inteiro i = 0; i < linhas; i++)
+    {
+        para (inteiro j = 0; j < colunas; j++)
+        {
+            visitado[i][j] = falso
+        }
+    }
+
+    // Fila para BFS
+    inteiro tamanhoFila = linhas * colunas
+    inteiro filaX[tamanhoFila]
+    inteiro filaY[tamanhoFila]
+
+    inteiro frente = 0
+    inteiro tras = 0
+
+    // Enfileira a posição inicial
+    filaX[tras] = inicioX
+    filaY[tras] = inicioY
+    tras = tras + 1
+
+    visitado[inicioX][inicioY] = verdadeiro
+
+    // Vetores de movimento para as quatro direções
+    inteiro dx[4]
+    inteiro dy[4]
+
+    dx[0] = -1  
+    dy[0] = 0    // cima
+    dx[1] = 1  
+    dy[1] = 0    // baixo
+    dx[2] = 0  
+    dy[2] = -1   // esquerda
+    dx[3] = 0  
+    dy[3] = 1    // direita
+
+    // Implementação do BFS
+    enquanto (frente < tras)
+    {
+        inteiro x = filaX[frente]
+        inteiro y = filaY[frente]
+        frente = frente + 1
+
+        se (x == destinoX e y == destinoY)
+        {
+            retorne verdadeiro  // Caminho encontrado
+        }
+
+        para (inteiro i = 0; i < 4; i++)
+        {
+            inteiro novoX = x + dx[i]
+            inteiro novoY = y + dy[i]
+
+            // Verifica se a nova posição está dentro dos limites
+            se (novoX >= 0 e novoX < linhas e novoY >= 0 e novoY < colunas)
+            {
+                // Verifica se a posição é caminhável e não foi visitada
+                se (labirinto[novoX][novoY] != PAREDE e labirinto[novoX][novoY] != ARMADILHA e nao visitado[novoX][novoY])
+                {
+                    visitado[novoX][novoY] = verdadeiro
+                    filaX[tras] = novoX
+                    filaY[tras] = novoY
+                    tras = tras + 1
+                }
+            }
+        }
+    }
+
+    retorne falso  // Caminho não encontrado
 }
 
 }
