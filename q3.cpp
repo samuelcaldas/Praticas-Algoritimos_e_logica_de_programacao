@@ -92,16 +92,13 @@ int main() {
     return 0;
 }
 
-/*
- * Função: verificarValorEmprestimo
- * --------------------------------
- * Verifica se o valor do emprestimo não excede 30% da renda mensal.
+/**
+ * @brief Verifica se o valor do emprestimo não excede 30% da renda mensal.
  *
- * valorEmprestimo: O valor solicitado do emprestimo.
- * valorMaximoEmprestimo: O valor máximo permitido com base na renda.
- * motivosRejeicao: A string para anexar os motivos da rejeição.
- *
- * retorna: 1 se o valor do emprestimo for aceitável, 0 caso contrário.
+ * @param valorEmprestimo O valor solicitado do emprestimo.
+ * @param valorMaximoEmprestimo O valor máximo permitido com base na renda mensal.
+ * @param motivosRejeicao A string para armazenar os motivos da rejeição, se houver.
+ * @return int Retorna 1 se o valor do emprestimo for aceitável, 0 caso contrário.
  */
 int verificarValorEmprestimo(float valorEmprestimo, float valorMaximoEmprestimo, char* motivosRejeicao) {
     if (valorEmprestimo > valorMaximoEmprestimo) {
@@ -111,15 +108,12 @@ int verificarValorEmprestimo(float valorEmprestimo, float valorMaximoEmprestimo,
     return 1;
 }
 
-/*
- * Função: verificarHistoricoCredito
- * ---------------------------------
- * Verifica se o historico de credito e aceitável.
+/**
+ * @brief Verifica se o historico de credito do cliente e aceitável.
  *
- * historicoCredito: O historico de credito do cliente ('B' para bom, 'R' para ruim).
- * motivosRejeicao: A string para anexar os motivos da rejeição.
- *
- * retorna: 1 se o historico de credito for aceitável, 0 caso contrário.
+ * @param historicoCredito O historico de credito do cliente ('B' para bom, 'R' para ruim).
+ * @param motivosRejeicao A string para armazenar os motivos da rejeição, se houver.
+ * @return int Retorna 1 se o historico de credito for aceitável, 0 caso contrário.
  */
 int verificarHistoricoCredito(char historicoCredito, char* motivosRejeicao) {
     if (historicoCredito == HISTORICO_CREDITO_RUIM) {
@@ -129,15 +123,12 @@ int verificarHistoricoCredito(char historicoCredito, char* motivosRejeicao) {
     return 1;
 }
 
-/*
- * Função: verificarEstabilidadeEmprego
- * ------------------------------------
- * Verifica se a estabilidade no emprego do cliente e aceitável.
+/**
+ * @brief Verifica se a estabilidade no emprego do cliente e aceitável.
  *
- * estabilidadeEmprego: A estabilidade no emprego do cliente ('E' para estável, 'I' para instável).
- * motivosRejeicao: A string para anexar os motivos da rejeição.
- *
- * retorna: 1 se a estabilidade no emprego for aceitável, 0 caso contrário.
+ * @param estabilidadeEmprego A estabilidade no emprego do cliente ('E' para estável, 'I' para instável).
+ * @param motivosRejeicao A string para armazenar os motivos da rejeição, se houver.
+ * @return int Retorna 1 se a estabilidade no emprego for aceitável, 0 caso contrário.
  */
 int verificarEstabilidadeEmprego(char estabilidadeEmprego, char* motivosRejeicao) {
     if (estabilidadeEmprego == ESTABILIDADE_EMPREGADO_INSTAVEL) {
@@ -147,16 +138,13 @@ int verificarEstabilidadeEmprego(char estabilidadeEmprego, char* motivosRejeicao
     return 1;
 }
 
-/*
- * Função: verificarValorEntrada
- * -----------------------------
- * Verifica se o valor da entrada e suficiente.
+/**
+ * @brief Verifica se o valor da entrada e suficiente para o emprestimo.
  *
- * valorEmprestimo: O valor solicitado do emprestimo.
- * valorEntrada: O valor da entrada fornecida.
- * motivosRejeicao: A string para anexar os motivos da rejeição.
- *
- * retorna: 1 se o valor da entrada for suficiente, 0 caso contrário.
+ * @param valorEmprestimo O valor solicitado do emprestimo.
+ * @param valorEntrada O valor da entrada fornecida pelo cliente.
+ * @param motivosRejeicao A string para armazenar os motivos da rejeição, se houver.
+ * @return int Retorna 1 se o valor da entrada for suficiente, 0 caso contrário.
  */
 int verificarValorEntrada(float valorEmprestimo, float valorEntrada, char* motivosRejeicao) {
     float valorMinimoEntrada = valorEmprestimo * 0.20f;
