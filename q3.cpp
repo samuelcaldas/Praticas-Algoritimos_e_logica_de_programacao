@@ -1,7 +1,7 @@
 /*
  * Programa de Aprovação de Emprestimo
  * Este programa analisa as informações financeiras fornecidas pelos clientes e determina
- * se um emprestimo pode ser aprovado com base em criterios pre-definidos.
+ * se um emprestimo pode ser aprovado com base em criterios predefinidos.
  *
  * Autor: [Seu Nome]
  * Data: [Data Atual]
@@ -23,7 +23,9 @@ int verificarValorEmprestimo(float valorEmprestimo, float valorMaximoEmprestimo,
 int verificarHistoricoCredito(char historicoCredito, char* motivosRejeicao);
 int verificarEstabilidadeEmprego(char estabilidadeEmprego, char* motivosRejeicao);
 int verificarValorEntrada(float valorEmprestimo, float valorEntrada, char* motivosRejeicao);
+void limparBufferEntrada();
 
+// Função principal
 int main() {
     // Declarar variaveis
     float rendaMensal = 0.0f;
@@ -34,28 +36,74 @@ int main() {
     float valorMaximoEmprestimo = 0.0f;
 
     // Limpar a tela
-    system("cls");
+    system("cls || clear"); // Compativel com Windows e Unix
+
     printf("  **  Emprestimo Financeiro  **  \n");
 
-    // Ler as informações necessarias
-    printf("Digite sua renda mensal......................................: ");
-    scanf("%f", &rendaMensal);
-    printf("Digite o valor do emprestimo.................................: ");
-    scanf("%f", &valorEmprestimo);
+    // Ler e validar renda mensal
+    while (1) {
+        printf("Digite sua renda mensal......................................: ");
+        if (scanf("%f", &rendaMensal) == 1 && rendaMensal > 0) {
+            break;  // Entrada valida
+        }
+        else {
+            printf("Entrada invalida! A renda mensal deve ser um numero positivo.\n");
+            limparBufferEntrada();
+        }
+    }
 
-    // Limpar o buffer de entrada antes de ler os caracteres
-    while ((getchar()) != '\n'); // Limpar o buffer de entrada
+    // Ler e validar valor do emprestimo
+    while (1) {
+        printf("Digite o valor do emprestimo.................................: ");
+        if (scanf("%f", &valorEmprestimo) == 1 && valorEmprestimo > 0) {
+            break;  // Entrada valida
+        }
+        else {
+            printf("Entrada invalida! O valor do emprestimo deve ser um numero positivo.\n");
+            limparBufferEntrada();
+        }
+    }
 
-    printf("Digite seu historico de credito (B=Bom, R=Ruim)..............: ");
-    scanf(" %c", &historicoCredito);
-    historicoCredito = toupper(historicoCredito);
+    // Limpar o buffer de entrada
+    limparBufferEntrada();
 
-    printf("Digite sua estabilidade no emprego (E=Estavel, I=Instavel)...: ");
-    scanf(" %c", &estabilidadeEmprego);
-    estabilidadeEmprego = toupper(estabilidadeEmprego);
+    // Ler e validar o historico de credito
+    while (1) {
+        printf("Digite seu historico de credito (B=Bom, R=Ruim)..............: ");
+        if (scanf(" %c", &historicoCredito) == 1) {
+            historicoCredito = toupper(historicoCredito);
+            if (historicoCredito == HISTORICO_CREDITO_BOM || historicoCredito == HISTORICO_CREDITO_RUIM) {
+                break;  // Entrada valida
+            }
+        }
+        printf("Entrada invalida! O historico de credito deve ser 'B' ou 'R'.\n");
+        limparBufferEntrada();
+    }
 
-    printf("Digite o valor da entrada....................................: ");
-    scanf("%f", &valorEntrada);
+    // Ler e validar a estabilidade no emprego
+    while (1) {
+        printf("Digite sua estabilidade no emprego (E=Estavel, I=Instavel)...: ");
+        if (scanf(" %c", &estabilidadeEmprego) == 1) {
+            estabilidadeEmprego = toupper(estabilidadeEmprego);
+            if (estabilidadeEmprego == ESTABILIDADE_EMPREGADO_ESTAVEL || estabilidadeEmprego == ESTABILIDADE_EMPREGADO_INSTAVEL) {
+                break;  // Entrada valida
+            }
+        }
+        printf("Entrada invalida! A estabilidade no emprego deve ser 'E' ou 'I'.\n");
+        limparBufferEntrada();
+    }
+
+    // Ler e validar o valor da entrada
+    while (1) {
+        printf("Digite o valor da entrada....................................: ");
+        if (scanf("%f", &valorEntrada) == 1 && valorEntrada >= 0) {
+            break;  // Entrada valida
+        }
+        else {
+            printf("Entrada invalida! O valor da entrada deve ser um numero positivo.\n");
+            limparBufferEntrada();
+        }
+    }
 
     // Calcular o valor maximo do emprestimo (30% da renda mensal)
     valorMaximoEmprestimo = rendaMensal * 0.30f;
@@ -153,4 +201,9 @@ int verificarValorEntrada(float valorEmprestimo, float valorEntrada, char* motiv
         return 0;
     }
     return 1;
+}
+
+// Função para limpar o buffer de entrada
+void limparBufferEntrada() {
+    while (getchar() != '\n');
 }
