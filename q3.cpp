@@ -25,11 +25,7 @@ int verificarEstabilidadeEmprego(char estabilidadeEmprego, char* motivosRejeicao
 int verificarValorEntrada(float valorEmprestimo, float valorEntrada, char* motivosRejeicao);
 
 int main() {
-    // Limpar a tela
-    system("cls");
-    printf("  **  Emprestimo Financeiro  **  \n");
-
-    // Declarar variáveis
+    // Declarar variaveis
     float rendaMensal = 0.0f;
     float valorEmprestimo = 0.0f;
     char historicoCredito = '\0';
@@ -37,7 +33,11 @@ int main() {
     float valorEntrada = 0.0f;
     float valorMaximoEmprestimo = 0.0f;
 
-    // Ler as informações necessárias
+    // Limpar a tela
+    system("cls");
+    printf("  **  Emprestimo Financeiro  **  \n");
+
+    // Ler as informações necessarias
     printf("Digite sua renda mensal......................................: ");
     scanf("%f", &rendaMensal);
     printf("Digite o valor do emprestimo.................................: ");
@@ -50,14 +50,14 @@ int main() {
     scanf(" %c", &historicoCredito);
     historicoCredito = toupper(historicoCredito);
 
-    printf("Digite sua estabilidade no emprego (E=Estável, I=Instável)...: ");
+    printf("Digite sua estabilidade no emprego (E=Estavel, I=Instavel)...: ");
     scanf(" %c", &estabilidadeEmprego);
     estabilidadeEmprego = toupper(estabilidadeEmprego);
 
     printf("Digite o valor da entrada....................................: ");
     scanf("%f", &valorEntrada);
 
-    // Calcular o valor máximo do emprestimo (30% da renda mensal)
+    // Calcular o valor maximo do emprestimo (30% da renda mensal)
     valorMaximoEmprestimo = rendaMensal * 0.30f;
 
     // Determinar a aprovação do emprestimo
@@ -96,9 +96,9 @@ int main() {
  * @brief Verifica se o valor do emprestimo não excede 30% da renda mensal.
  *
  * @param valorEmprestimo O valor solicitado do emprestimo.
- * @param valorMaximoEmprestimo O valor máximo permitido com base na renda mensal.
+ * @param valorMaximoEmprestimo O valor maximo permitido com base na renda mensal.
  * @param motivosRejeicao A string para armazenar os motivos da rejeição, se houver.
- * @return int Retorna 1 se o valor do emprestimo for aceitável, 0 caso contrário.
+ * @return int Retorna 1 se o valor do emprestimo for aceitavel, 0 caso contrario.
  */
 int verificarValorEmprestimo(float valorEmprestimo, float valorMaximoEmprestimo, char* motivosRejeicao) {
     if (valorEmprestimo > valorMaximoEmprestimo) {
@@ -109,11 +109,11 @@ int verificarValorEmprestimo(float valorEmprestimo, float valorMaximoEmprestimo,
 }
 
 /**
- * @brief Verifica se o historico de credito do cliente e aceitável.
+ * @brief Verifica se o historico de credito do cliente e aceitavel.
  *
  * @param historicoCredito O historico de credito do cliente ('B' para bom, 'R' para ruim).
  * @param motivosRejeicao A string para armazenar os motivos da rejeição, se houver.
- * @return int Retorna 1 se o historico de credito for aceitável, 0 caso contrário.
+ * @return int Retorna 1 se o historico de credito for aceitavel, 0 caso contrario.
  */
 int verificarHistoricoCredito(char historicoCredito, char* motivosRejeicao) {
     if (historicoCredito == HISTORICO_CREDITO_RUIM) {
@@ -124,15 +124,15 @@ int verificarHistoricoCredito(char historicoCredito, char* motivosRejeicao) {
 }
 
 /**
- * @brief Verifica se a estabilidade no emprego do cliente e aceitável.
+ * @brief Verifica se a estabilidade no emprego do cliente e aceitavel.
  *
- * @param estabilidadeEmprego A estabilidade no emprego do cliente ('E' para estável, 'I' para instável).
+ * @param estabilidadeEmprego A estabilidade no emprego do cliente ('E' para estavel, 'I' para instavel).
  * @param motivosRejeicao A string para armazenar os motivos da rejeição, se houver.
- * @return int Retorna 1 se a estabilidade no emprego for aceitável, 0 caso contrário.
+ * @return int Retorna 1 se a estabilidade no emprego for aceitavel, 0 caso contrario.
  */
 int verificarEstabilidadeEmprego(char estabilidadeEmprego, char* motivosRejeicao) {
     if (estabilidadeEmprego == ESTABILIDADE_EMPREGADO_INSTAVEL) {
-        strcat(motivosRejeicao, "Estabilidade no emprego instável.\n");
+        strcat(motivosRejeicao, "Estabilidade no emprego instavel.\n");
         return 0;
     }
     return 1;
@@ -144,7 +144,7 @@ int verificarEstabilidadeEmprego(char estabilidadeEmprego, char* motivosRejeicao
  * @param valorEmprestimo O valor solicitado do emprestimo.
  * @param valorEntrada O valor da entrada fornecida pelo cliente.
  * @param motivosRejeicao A string para armazenar os motivos da rejeição, se houver.
- * @return int Retorna 1 se o valor da entrada for suficiente, 0 caso contrário.
+ * @return int Retorna 1 se o valor da entrada for suficiente, 0 caso contrario.
  */
 int verificarValorEntrada(float valorEmprestimo, float valorEntrada, char* motivosRejeicao) {
     float valorMinimoEntrada = valorEmprestimo * 0.20f;
